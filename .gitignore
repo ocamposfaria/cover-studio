@@ -1,0 +1,22 @@
+# pesos dos modelos: baixados sob demanda (~45 MB), não versionados
+models/*.ckpt
+models/*.pth
+models/*.th
+
+# logs e caches
+*.log
+__pycache__/
+.venv/
+
+# saídas de áudio, se alguém rodar com -o .
+*.wav
+*.flac
+*.mp3
+stems/
+
+# macOS
+.DS_Store
+
+# GarageBand regrava a cada save: miniatura da janela e histórico de undo
+**/*.band/Alternatives/*/WindowImage.jpg
+**/*.band/Alternatives/*/Undo Data.nosync/
