@@ -14,7 +14,7 @@ e monta a pasta do cover com o projeto do GarageBand.
 
 Ele monta `~/Music/Covers/<artista> - <música>/`, baixa a música como
 `<música>.mp3`, separa os stems (modo `full`), copia `templates/cover.band`
-para `garageband project/<música>.band`, abre o projeto e mostra os stems no
+para `garageband project/Projeto.band`, abre o projeto e mostra os stems no
 Finder. O GarageBand não tem API para inserir faixas, então arrastar os stems
 para o projeto é manual. Se o cover já existir, ele só completa o que faltar.
 
@@ -96,6 +96,24 @@ Três decisões que afetam o som, todas verificadas com medição:
 pouco, custa N× o tempo. `--device cpu` se o MPS der problema (é ~1.8× mais
 lento).
 
+## Plugin Doubler (guitarra dobrada ao vivo)
+
+`plugins/doubler/` é um Audio Unit que duplica o sinal e abre em estéreo:
+**esquerda seca, direita atrasada** (efeito Haas). Como é um plugin, você ouve
+dobrado enquanto toca, coisa que duas trilhas no GarageBand não fazem. Um único
+parâmetro, **Delay** (0-100 ms, padrão 20). Entre 10 e 30 ms soa como duas
+guitarras gravadas; acima de ~40 ms vira eco. Não adiciona latência.
+
+```bash
+plugins/doubler/build.sh install   # compila, testa, instala e valida com auval
+```
+
+Só precisa das Command Line Tools (não precisa do Xcode). Na primeira vez o
+script baixa o AudioUnitSDK da Apple. Depois de instalar, feche e reabra o
+GarageBand. O plugin aparece em *Audio Units → Cover Studio → Doubler*. Ponha no
+**último slot da trilha de guitarra**, depois do Tape Delay. No Master ele
+dobraria a mixagem inteira.
+
 ## Estrutura
 
 Um cover tem esta cara (o `init_cover.py` e o `--cover` montam igual):
@@ -109,7 +127,7 @@ Um cover tem esta cara (o `init_cover.py` e o `--cover` montam igual):
 │       ├── guitar_6s.wav    # htdemucs_6s, para comparar
 │       ├── no_guitar.wav    # ← tocar em cima
 │       └── bass.wav  drums.wav  vocals.wav  piano.wav  other.wav
-├── garageband project/   o .band (copiado do template)
+├── garageband project/   Projeto.band (copiado do template)
 ├── exported mixes/       os bounces de áudio
 └── final video/          o vídeo do cover
 ```

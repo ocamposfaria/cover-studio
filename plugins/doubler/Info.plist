@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleExecutable</key>
+	<string>Doubler</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.coverstudio.doubler</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Doubler</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0.0</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>11.0</string>
+	<key>AudioComponents</key>
+	<array>
+		<dict>
+			<key>type</key>
+			<string>aufx</string>
+			<key>subtype</key>
+			<string>Dblr</string>
+			<key>manufacturer</key>
+			<string>CvSt</string>
+			<key>name</key>
+			<string>Cover Studio: Doubler</string>
+			<key>description</key>
+			<string>Duplica o sinal: esquerda seca, direita atrasada (Haas)</string>
+			<key>version</key>
+			<integer>65536</integer>
+			<key>factoryFunction</key>
+			<string>DoublerFactory</string>
+			<key>sandboxSafe</key>
+			<true/>
+			<key>tags</key>
+			<array>
+				<string>Effects</string>
+				<string>Delay</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

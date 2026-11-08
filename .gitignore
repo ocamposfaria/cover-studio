@@ -20,3 +20,7 @@ stems/
 # GarageBand regrava a cada save: miniatura da janela e histórico de undo
 **/*.band/Alternatives/*/WindowImage.jpg
 **/*.band/Alternatives/*/Undo Data.nosync/
+
+# plugin Doubler: SDK baixado e saída do build
+plugins/doubler/.deps/
+plugins/doubler/build/

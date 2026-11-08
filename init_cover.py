@@ -25,7 +25,7 @@ Pergunta qual é o cover, acha a música no YouTube (ou usa o link que você
 colar), e monta ~/Music/Covers/<artista> - <música>/:
 
     song and stems/<música>.mp3 + stems/     baixado e separado (modo full)
-    garageband project/<música>.band         cópia de templates/cover.band
+    garageband project/Projeto.band          cópia de templates/cover.band
     exported mixes/  final video/            vazias, prontas para uso
 
 No fim abre o projeto no GarageBand e mostra os stems no Finder. O GarageBand
@@ -47,6 +47,7 @@ from yt_audio import AUDIO_SUBDIR, COVERS_DIR
 
 TEMPLATE = yt_audio.SCRIPT_DIR / "templates" / "cover.band"
 BAND_SUBDIR = "garageband project"
+BAND_NAME = "Projeto.band"  # todo cover tem o mesmo nome de projeto; a pasta diz qual é
 SEARCH_RESULTS = 5
 
 
@@ -96,7 +97,7 @@ def existing_audio(audio_dir: Path) -> Path | None:
     return None
 
 
-def make_band(base: Path, song: str, logger) -> Path | None:
+def make_band(base: Path, logger) -> Path | None:
     """Copia o template do GarageBand para o cover, se ainda não houver projeto."""
     band_dir = base / BAND_SUBDIR
     existing = sorted(band_dir.glob("*.band"))
@@ -106,7 +107,7 @@ def make_band(base: Path, song: str, logger) -> Path | None:
     if not TEMPLATE.exists():
         logger.warning(f"Sem template em {TEMPLATE}; crie o projeto no GarageBand à mão.")
         return None
-    band = band_dir / f"{song}.band"
+    band = band_dir / BAND_NAME
     shutil.copytree(TEMPLATE, band)
     logger.info(f"🎛  Projeto do GarageBand: {band}")
     return band
@@ -151,7 +152,7 @@ def main() -> int:
     elif not yt_audio.separate_file(audio, audio_dir, logger, args.stems_mode, "auto", "wav", 1):
         return 1
 
-    band = make_band(base, song, logger)
+    band = make_band(base, logger)
 
     logger.info(f"✅ Pronto: {base}")
     if not args.no_open:
